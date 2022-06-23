@@ -1,10 +1,11 @@
 import './Intervalo.css'
 import React from 'react'
+import { connect } from 'react-redux'
+
 import Card from './Card'
 
-export default props => {
-    const { min, max } = props
-    const aleatorio = parseInt(Math.random() * (max - min)) + min
+function Soma(props) {
+    const {min, max} = props
     return (
         <Card title="Soma dos números" blue>
             <div >
@@ -16,3 +17,12 @@ export default props => {
         </Card>
     )
 }
+
+function mapStateToProps(state) {
+    return {
+        min: state.numbers.min,
+        max: state.numbers.max,
+    }
+}
+
+export default connect(mapStateToProps)(Soma)
